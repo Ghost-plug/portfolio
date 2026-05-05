@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <!-- ============================================================
+       SEO & META — Update content values with personal/project info
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Daniel Essien — Frontend Architect & Data Analyst. Bridging complex data analysis and high-end frontend interfaces." />
+  <meta name="keywords"
+    content="Daniel Essien, Frontend Developer, Data Analyst, UI Engineer, Portfolio, Web Development" />
+  <meta name="author" content="Daniel Essien" />
+
+  <!-- Open Graph (social sharing previews) -->
+  <meta property="og:title" content="Daniel Essien — Frontend Architect & Data Analyst" />
+  <meta property="og:description"
+    content="Bridging complex data analysis and high-end frontend interfaces." />
+  <meta property="og:type" content="website" />
+  <!-- UPDATE: Replace with your deployed URL -->
+  <meta property="og:url" content="https://yourdomain.com" />
+  <!-- UPDATE: Replace with your OG image path -->
+  <meta property="og:image" content="https://yourdomain.com/og-image.jpg" />
+
+  <title>Daniel Essien — Frontend Architect & Data Analyst</title>
+
+  <!-- ============================================================
+       GOOGLE FONTS — Playfair Display (display) + DM Sans (body)
+       ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — Light & Dark Themes
+       ============================================================ */
+    :root {
+      --accent: #C8A96E;
+      --accent-muted: #a8884e;
+      --accent-faint: rgba(200, 169, 110, 0.12);
+      --radius-card: 2px;
+      --radius-btn: 2px;
+      --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
+      --shadow-card-hover: 0 2px 8px rgba(0,0,0,0.12), 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    /* DARK THEME (default) */
+    [data-theme="dark"] {
+      --bg: #0F0F0E;
+      --bg-secondary: #161614;
+      --bg-card: #1A1A18;
+      --bg-card-hover: #1F1F1D;
+      --border: rgba(255,255,255,0.07);
+      --text-primary: #F0EDE8;
+      --text-secondary: #9A9589;
+      --text-muted: #5A5650;
+      --nav-bg: rgba(15, 15, 14, 0.88);
+    }
+
+    /* LIGHT THEME */
+    [data-theme="light"] {
+      --bg: #F7F4EF;
+      --bg-secondary: #F0EDE8;
+      --bg-card: #FFFFFF;
+      --bg-card-hover: #FAFAF9;
+      --border: rgba(0,0,0,0.08);
+      --text-primary: #1A1916;
+      --text-secondary: #6B6560;
+      --text-muted: #A8A29E;
+      --nav-bg: rgba(247, 244, 239, 0.88);
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.04);
+      --shadow-card-hover: 0 2px 8px rgba(0,0,0,0.08), 0 20px 60px rgba(0,0,0,0.08);
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.65;
+      transition: background-color var(--transition), color var(--transition);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       SCROLL ANIMATION — Intersection Observer adds .visible
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       LAYOUT UTILITIES
+       ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section { padding: 110px 0; }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 540px;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 40px;
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      transition: color var(--transition);
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .theme-toggle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      transition: border-color var(--transition), color var(--transition), background var(--transition);
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-faint);
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--text-primary);
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      padding: 8px 0 16px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-drawer a {
+      padding: 13px 32px;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-drawer a:hover { color: var(--text-primary); background: var(--accent-faint); }
+    .nav-drawer.open { display: flex; }
+
+    /* ============================================================
+       HERO SECTION
+       ============================================================ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle noise texture overlay */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* Warm accent glow blobs */
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-glow-1 {
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(200,169,110,0.10) 0%, transparent 70%);
+      top: -80px; right: -60px;
+    }
+    .hero-glow-2 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 70%);
+      bottom: 60px; left: -80px;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 64px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-content { max-width: 620px; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+    }
+    .hero-headline em { font-style: italic; color: var(--accent); }
+
+    .hero-subtext {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 44px;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Primary CTA */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: #0F0F0E;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: var(--radius-btn);
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-primary:hover {
+      background: var(--accent-muted);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200,169,110,0.25);
+    }
+    .btn-primary svg { width: 14px; height: 14px; }
+
+    /* Ghost secondary button */
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      border-radius: var(--radius-btn);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: color var(--transition), border-color var(--transition), background var(--transition), transform var(--transition);
+    }
+    .btn-ghost:hover {
+      color: var(--text-primary);
+      border-color: var(--accent);
+      background: var(--accent-faint);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       HERO RIGHT COLUMN — Profile picture
+       ============================================================ */
+    .hero-photo-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-photo-frame {
+      width: 320px;
+      height: 380px;
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+    }
+
+    /* Decorative corner brackets */
+    .hero-photo-frame::before,
+    .hero-photo-frame::after {
+      content: '';
+      position: absolute;
+      width: 40px; height: 40px;
+      z-index: 2;
+    }
+    .hero-photo-frame::before {
+      top: -1px; right: -1px;
+      border-top: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+    }
+    .hero-photo-frame::after {
+      bottom: -1px; left: -1px;
+      border-bottom: 2px solid var(--accent);
+      border-left: 2px solid var(--accent);
+    }
+
+    /* ==========================================
+       PROFILE PICTURE — REPLACE THIS IMG TAG
+       Swap placeholder div for:
+       <img src="C:\Users\Viewnet\Desktop\port4\photo_2026-05-05_12-55-25.jpg" alt="Daniel Essien" loading="eager" />
+       Recommended: square or portrait, min 600×750px
+       ========================================== */
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .hero-photo-frame:hover img { transform: scale(1.03); }
+
+    /* Placeholder — remove once real photo is added */
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      gap: 12px;
+    }
+    .photo-placeholder-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--accent-faint);
+      border: 1px dashed var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .photo-placeholder p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    /* Shadow offset block */
+    .hero-photo-offset {
+      position: absolute;
+      inset: 14px -14px -14px 14px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      z-index: -1;
+    }
+
+    /* Stat chips */
+    .hero-stats {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .hero-stat {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 12px 16px;
+      text-align: center;
+      transition: border-color var(--transition);
+    }
+    .hero-stat:hover { border-color: var(--accent); }
+    .hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.68rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+       ============================================================ */
+    #about {
+      background: var(--bg-secondary);
+      transition: background var(--transition);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+    .about-text p strong { color: var(--text-primary); font-weight: 500; }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .skills-group { margin-bottom: 36px; }
+    .skills-group-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .skills-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      transition: border-color var(--transition), color var(--transition), background var(--transition);
+    }
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-faint);
+    }
+
+    /* ============================================================
+       PROJECTS SECTION
+       ============================================================ */
+    .projects-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* Project card */
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+      transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition), background var(--transition);
+      position: relative;
+    }
+    .project-card:hover {
+      box-shadow: var(--shadow-card-hover);
+      border-color: rgba(200,169,110,0.25);
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+    }
+
+    /* Accent bar fills on hover */
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+
+    .card-header { padding: 28px 28px 0; }
+
+    .card-number {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+
+    .card-section-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .card-body { padding: 0 28px; flex: 1; }
+
+    .card-problem { margin-bottom: 20px; }
+    .card-problem p {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .card-tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .card-tech-tag {
+      padding: 3px 10px;
+      background: var(--accent-faint);
+      border: 1px solid rgba(200,169,110,0.2);
+      border-radius: 2px;
+      font-size: 0.72rem;
+      color: var(--accent);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .card-footer {
+      padding: 24px 28px 28px;
+      margin-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Live Demo button */
+    .btn-demo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: transparent;
+      color: var(--accent);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-btn);
+      border: 1px solid rgba(200,169,110,0.4);
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-demo:hover {
+      background: var(--accent-faint);
+      border-color: var(--accent);
+      transform: translateX(3px);
+      box-shadow: 0 4px 16px rgba(200,169,110,0.12);
+    }
+    .btn-demo svg { width: 12px; height: 12px; }
+
+    /* ============================================================
+       CONTACT SECTION
+       ============================================================ */
+    #contact {
+      background: var(--bg-secondary);
+      transition: background var(--transition);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-intro p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    /* Social links list */
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      color: var(--text-primary);
+    }
+    .social-link:hover {
+      border-color: var(--accent);
+      background: var(--accent-faint);
+      transform: translateX(6px);
+    }
+
+    .social-link-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--accent-faint);
+      border: 1px solid rgba(200,169,110,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .social-link:hover .social-link-icon {
+      background: rgba(200,169,110,0.2);
+      border-color: var(--accent);
+    }
+
+    .social-link-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+    .social-link-handle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .social-link-arrow {
+      margin-left: auto;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .social-link:hover .social-link-arrow { opacity: 1; transform: translateX(0); }
+
+    /* Contact form */
+    .contact-form-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 28px;
+      line-height: 1.3;
+    }
+
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 300;
+      transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+      box-shadow: 0 0 0 3px var(--accent-faint);
+    }
+    .form-textarea { resize: vertical; min-height: 130px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 15px;
+      background: var(--accent);
+      color: #0F0F0E;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .form-submit:hover {
+      background: var(--accent-muted);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200,169,110,0.3);
+    }
+    .form-submit:active { transform: translateY(0); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      transition: border-color var(--transition);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy { font-size: 0.78rem; color: var(--text-muted); font-weight: 300; }
+    .footer-copy span { color: var(--accent); }
+
+    .footer-back-top {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color var(--transition);
+    }
+    .footer-back-top:hover { color: var(--accent); }
+
+    .hr-accent {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-content { max-width: 100%; }
+      .hero-subtext { margin: 0 auto 44px; }
+      .hero-actions { justify-content: center; }
+      .hero-photo-wrap { order: -1; display: flex; flex-direction: column; align-items: center; }
+      .hero-photo-frame { width: 220px; height: 260px; }
+      .hero-stats { width: 100%; max-width: 340px; }
+      .hero-eyebrow { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .projects-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+      .section { padding: 80px 0; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-headline { font-size: 2.2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Wordmark — UPDATE display name if desired -->
+        <a href="#hero" class="nav-logo" aria-label="Daniel Essien — Home">
+          D<span>.</span>Essien
+        </a>
+
+        <!-- Desktop links -->
+        <ul class="nav-links" role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-controls">
+          <!-- Theme toggle -->
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme">
+            <span id="theme-icon">☀</span>
+          </button>
+          <!-- Mobile hamburger -->
+          <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Mobile drawer -->
+      <div class="nav-drawer" id="nav-drawer" role="menu">
+        <a href="#about" role="menuitem">About</a>
+        <a href="#projects" role="menuitem">Projects</a>
+        <a href="#contact" role="menuitem">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+       ============================================================ -->
+  <section id="hero" aria-label="Hero — Introduction">
+    <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-inner">
+
+        <!-- Left: Text -->
+        <div class="hero-content">
+          <div class="hero-eyebrow fade-in">
+            Frontend Architect &amp; Data Analyst
+          </div>
+
+          <h1 class="hero-headline fade-in fade-in-delay-1">
+            Where <em>raw data</em><br>
+            meets refined<br>
+            interfaces.
+          </h1>
+
+          <p class="hero-subtext fade-in fade-in-delay-2">
+            I turn complex datasets and messy user problems into elegant,
+            high performance web experiences with every pixel informed by insight
+           and every interaction crafted with intent.
+          </p>
+
+          <div class="hero-actions fade-in fade-in-delay-3">
+            <a href="#contact" class="btn-primary" aria-label="Get in touch with Daniel">
+              Let's Work Together
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </a>
+            <a href="#projects" class="btn-ghost">View Projects</a>
+          </div>
+        </div>
+
+        <!-- Right: Profile photo -->
+        <div class="hero-photo-wrap fade-in fade-in-delay-2">
+          <div class="hero-photo-frame">
+
+            <!-- ==========================================
+                 PROFILE PICTURE — INSERT YOUR PHOTO HERE
+                 ==========================================
+                 Replace the photo-placeholder div below with:
+
+                 <img
+                   src="assets/daniel-essien.jpg"
+                   alt="Daniel Essien — Frontend Architect & Data Analyst"
+                   loading="eager"
+                   width="320"
+                   height="380"
+                 />
+
+                 Recommended: portrait crop, min 640×760px, JPG or WebP.
+                 Delete the entire .photo-placeholder div once done.
+                 ========================================== -->
+            <div class="photo-placeholder" aria-hidden="true">
+              <img
+                   src="photo_2026-05-05_12-55-25.jpg"
+                   alt="Daniel Essien — Frontend Architect & Data Analyst"
+                   loading="eager"
+                   width="500"
+                   height="500"
+                 />
+              
+            </div>
+            <!-- END PROFILE PICTURE PLACEHOLDER -->
+
+          </div>
+          <div class="hero-photo-offset" aria-hidden="true"></div>
+
+          <!-- Quick stats -->
+          <div class="hero-stats">
+            <!-- UPDATE: Adjust figures to match your real experience -->
+            <div class="hero-stat">
+              <div class="hero-stat-value">8+</div>
+              <div class="hero-stat-label">Projects</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">3+</div>
+              <div class="hero-stat-label">Yrs Exp.</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">∞</div>
+              <div class="hero-stat-label">Curiosity</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr-accent" />
+
+  <!-- ============================================================
+       ABOUT SECTION
+       ============================================================ -->
+  <section id="about" class="section" aria-label="About Daniel Essien">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Narrative -->
+        <div>
+          <p class="section-label fade-in">About</p>
+          <h2 class="section-title fade-in fade-in-delay-1">
+            Built at the intersection of<br>
+            <em style="font-style:italic; color:var(--accent);">numbers and pixels.</em>
+          </h2>
+          <div class="divider fade-in fade-in-delay-1"></div>
+
+          <div class="about-text">
+            <p class="fade-in fade-in-delay-2">
+              I'm <strong>Daniel Essien</strong>, a frontend architect who didn't
+              start at a keyboard. My journey began with <strong>data analysis</strong>,
+              spending years making sense of sprawling spreadsheets, user behaviour
+              funnels, and KPI dashboards. That foundation changed how I build
+              interfaces forever.
+            </p>
+            <p class="fade-in fade-in-delay-2">
+              When I transitioned into frontend development, I brought something
+              most engineers don't have which is an obsession with <strong>what the numbers
+              say about the user</strong>. Every layout decision, every micro interaction,
+              every CTA placement is backed by data, not instinct alone.
+            </p>
+            <p class="fade-in fade-in-delay-3">
+              Today, I craft web experiences for businesses that want their product
+              to <strong>feel as smart as it is</strong>. Clean code, considered design,
+              and measurable impact and that's the standard I hold every project to.
+            </p>
+            <p class="fade-in fade-in-delay-3">
+              When I'm not shipping interfaces, I'm probably reverse engineering
+              a dashboard I admire, reading about cognitive load theory, or
+              arguing that typography <em>is</em> UX.
+            </p>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div>
+          <div class="skills-group fade-in fade-in-delay-1">
+            <p class="skills-group-label">Frontend</p>
+            <div class="skills-tags">
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">CSS3</span>
+              <span class="skill-tag">JavaScript (ES6+)</span>
+              <span class="skill-tag">Responsive Design</span>
+              <span class="skill-tag">CSS Grid & Flexbox</span>
+              <span class="skill-tag">Performance Opt.</span>
+              <span class="skill-tag">Accessibility</span>
+              <span class="skill-tag">Web Animation</span>
+            </div>
+          </div>
+
+          <div class="skills-group fade-in fade-in-delay-2">
+            <p class="skills-group-label">Data & Analysis</p>
+            <div class="skills-tags">
+              <span class="skill-tag">Excel / Sheets</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Data Visualisation</span>
+              <span class="skill-tag">User Behaviour Analysis</span>
+              <span class="skill-tag">KPI Dashboards</span>
+              <span class="skill-tag">A/B Testing</span>
+            </div>
+          </div>
+
+          <div class="skills-group fade-in fade-in-delay-3">
+            <p class="skills-group-label">Tools & Workflow</p>
+            <div class="skills-tags">
+              <span class="skill-tag">Git & GitHub</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">VS Code</span>
+              <span class="skill-tag">Lighthouse</span>
+              <span class="skill-tag">Chrome DevTools</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr-accent" />
+
+  <!-- ============================================================
+       PROJECTS SECTION
+       8 mini case study cards — problem / tech / live demo only
+       NOTE: No source code or GitHub links, per specification.
+       ============================================================ -->
+  <section id="projects" class="section" aria-label="Projects">
+    <div class="container">
+
+      <div class="projects-header">
+        <div>
+          <p class="section-label fade-in">Selected Work</p>
+          <h2 class="section-title fade-in fade-in-delay-1">Case Studies</h2>
+          <div class="divider fade-in fade-in-delay-1"></div>
+          <p class="section-subtitle fade-in fade-in-delay-2">
+            Eight real-world builds with each solving a distinct user problem,
+            each delivered with precision.
+          </p>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- ==========================================
+             PROJECT 01 — GreenGrant
+             Live URL: https://greengrant.company/
+             ========================================== -->
+        <article class="project-card fade-in" aria-label="Project: GreenGrant">
+          <div class="card-header">
+            <p class="card-number">Project — 01</p>
+            <h3 class="card-title">GreenGrant</h3>
+          </div>
+          <div class="card-body">
+            <div class="card-problem">
+              <p class="card-section-label">Problem Solved</p>
+              <p>Grant seeking organisations struggled to discover and evaluate environmental
+                funding opportunities from a single source. GreenGrant centralises discovery,
+                dramatically reducing research time for both applicants and administrators.</p>
+            </div>
+            <div class="card-tech">
+              <p class="card-section-label">Tech Stack</p>
+              <div class="card-tech-tags">
+                <span class="card-tech-tag">HTML5</span>
+                <span class="card-tech-tag">CSS3</span>
+                <span class="card-tech-tag">JavaScript</span>
+                <span class="card-tech-tag">Responsive Design</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://greengrant.company/" target="_blank" rel="noopener noreferrer"
+              class="btn-demo" aria-label="View GreenGrant live demo">
+              Live Demo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 8h8M8 4l4 4-4 4"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- ==========================================
+             PROJECT 02 — CCU eSpa
+             Live URL: https://ghost-plug.github.io/ccuespa/
+             ========================================== -->
+        <article class="project-card fade-in fade-in-delay-1" aria-label="Project: CCU eSpa">
+          <div class="card-header">
+            <p class="card-number">Project — 02</p>
+            <h3 class="card-title">CCU eSpa</h3>
+          </div>
+          <div class="card-body">
+            <div class="card-problem">
+              <p class="card-section-label">Problem Solved</p>
+              <p>A premium wellness brand lacked a digital presence that matched its in person
+                luxuriousness. The site establishes instant trust, communicates offerings clearly,
+                and converts visitors into bookings with a frictionless flow.</p>
+            </div>
+            <div class="card-tech">
+              <p class="card-section-label">Tech Stack</p>
+              <div class="card-tech-tags">
+                <span class="card-tech-tag">HTML5</span>
+                <span class="card-tech-tag">CSS3</span>
+                <span class="card-tech-tag">JavaScript</span>
+                <span class="card-tech-tag">Smooth Scroll UX</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://ghost-plug.github.io/ccuespa/" target="_blank" rel="noopener noreferrer"
+              class="btn-demo" aria-label="View CCU eSpa live demo">
+              Live Demo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 8h8M8 4l4 4-4 4"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- ==========================================
+             PROJECT 03 — Boardwalk Grill
+             Live URL: https://ghost-plug.github.io/boardwalkgrill
+             ========================================== -->
+        <article class="project-card fade-in fade-in-delay-2" aria-label="Project: Boardwalk Grill">
+          <div class="card-header">
+            <p class="card-number">Project — 03</p>
+            <h3 class="card-title">Boardwalk Grill</h3>
+          </div>
+          <div class="card-body">
+            <div class="card-problem">
+              <p class="card-section-label">Problem Solved</p>
+              <p>A beloved local grill had no digital menu or online identity, losing potential
+                diners to better visible competitors. The site showcases atmosphere, menu items,
+                and location, turning search traffic into foot traffic.</p>
+            </div>
+            <div class="card-tech">
+              <p class="card-section-label">Tech Stack</p>
+              <div class="card-tech-tags">
+                <span class="card-tech-tag">HTML5</span>
+                <span class="card-tech-tag">CSS3</span>
+                <span class="card-tech-tag">JavaScript</span>
+                <span class="card-tech-tag">CSS Animations</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://ghost-plug.github.io/boardwalkgrill" target="_blank" rel="noopener noreferrer"
+              class="btn-demo" aria-label="View Boardwalk Grill live demo">
+              Live Demo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 8h8M8 4l4 4-4 4"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- ==========================================
+             PROJECT 04 — Cafe Tibet
+             Live URL: https://ghost-plug.github.io/cafetibet
+             ========================================== -->
+        <article class="project-card fade-in" aria-label="Project: Cafe Tibet">
+          <div class="card-header">
+            <p class="card-number">Project — 04</p>
+            <h3 class="card-title">Cafe Tibet</h3>
+          </div>
+          <div class="card-body">
+            <div class="card-problem">
+              <p class="card-section-label">Problem Solved</p>
+              <p>A culturally rich restaurant needed a web experience that conveyed its unique
+                heritage and warm atmosphere online. The design bridges cultural storytelling
+                with practical dining info like menus, hours, and reservations all within a single visit.</p>
+            </div>
+            <div class="card-tech">
+              <p class="card-section-label">Tech Stack</p>
+              <div class="card-tech-tags">
+                <span class="card-tech-tag">HTML5</span>
+                <span class="card-tech-tag">CSS3</span>
+                <span class="card-tech-tag">JavaScript</span>
+                <span class="card-tech-tag">Mobile-First</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://ghost-plug.github.io/cafetibet" target="_blank" rel="noopener noreferrer"
+              class="btn-demo" aria-label="View Cafe Tibet live demo">
+              Live Demo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 8h8M8 4l4 4-4 4"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- ==========================================
+             PROJECT 05 — JF Autos
+             Live URL: https://ghost-plug.github.io/JFAutos
+             ========================================== -->
+        <article class="project-card fade-in fade-in-delay-1" aria-label="Project: JF Autos">
+          <div class="card-header">
+            <p class="card-number">Project — 05</p>
+            <h3 class="card-title">JF Autos</h3>
+          </div>
+          <div class="card-body">
+            <div class="card-problem">
+              <p class="card-section-label">Problem Solved</p>
+              <p>An independent auto shop relied entirely on word of mouth with no way
+                for customers to browse inventory online. The site enables car discovery, builds
+                dealer credibility, and funnels qualified leads directly to the sales team.</p>
+            </div>
+            <div class="card-tech">
+              <p class="card-section-label">Tech Stack</p>
+              <div class="card-tech-tags">
+                <span class="card-tech-tag">HTML5</span>
+                <span class="card-tech-tag">CSS3</span>
+                <span class="card-tech-tag">JavaScript</span>
+                <span class="card-tech-tag">Lead Gen UX</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://ghost-plug.github.io/JFAutos" target="_blank" rel="noopener noreferrer"
+              class="btn-demo" aria-label="View JF Autos live demo">
+              Live Demo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 8h8M8 4l4 4-4 4"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- ==========================================
+             PROJECT 06 — MacMec Plumbing
+             Live URL: https://ghost-plug.github.io/macmecplumbing
+             ========================================== -->
+        <article class="project-card fade-in fade-in-delay-2" aria-label="Project: MacMec Plumbing">
+          <div class="card-header">
+            <p class="card-number">Project — 06</p>
+            <h3 class="card-title">MacMec Plumbing</h3>
+          </div>
+          <div class="card-body">
+            <div class="card-problem">
+              <p class="card-section-label">Problem Solved</p>
+              <p>Local plumbing businesses are discovered almost exclusively via search, yet most
+                have poor or no websites. This site optimises for local SEO, builds instant trust
+                through service listings, and makes booking a call frictionless, especially on mobile.</p>
+            </div>
+            <div class="card-tech">
+              <p class="card-section-label">Tech Stack</p>
+              <div class="card-tech-tags">
+                <span class="card-tech-tag">HTML5</span>
+                <span class="card-tech-tag">CSS3</span>
+                <span class="card-tech-tag">JavaScript</span>
+                <span class="card-tech-tag">Local SEO</span>
+                <span class="card-tech-tag">Mobile-First</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://ghost-plug.github.io/macmecplumbing" target="_blank" rel="noopener noreferrer"
+              class="btn-demo" aria-label="View MacMec Plumbing live demo">
+              Live Demo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 8h8M8 4l4 4-4 4"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- ==========================================
+             PROJECT 07 — Roadside Rush
+             Live URL: https://ghost-plug.github.io/roadside-rush
+             ========================================== -->
+        <article class="project-card fade-in" aria-label="Project: Roadside Rush">
+          <div class="card-header">
+            <p class="card-number">Project — 07</p>
+            <h3 class="card-title">Roadside Rush</h3>
+          </div>
+          <div class="card-body">
+            <div class="card-problem">
+              <p class="card-section-label">Problem Solved</p>
+              <p>Fast casual food businesses lose customers to friction, long menus, unclear pricing,
+                slow load times. Roadside Rush delivers a stripped back, high speed ordering experience
+                that gets users from discovery to decision in seconds.</p>
+            </div>
+            <div class="card-tech">
+              <p class="card-section-label">Tech Stack</p>
+              <div class="card-tech-tags">
+                <span class="card-tech-tag">HTML5</span>
+                <span class="card-tech-tag">CSS3</span>
+                <span class="card-tech-tag">JavaScript</span>
+                <span class="card-tech-tag">Performance UX</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://ghost-plug.github.io/roadside-rush" target="_blank" rel="noopener noreferrer"
+              class="btn-demo" aria-label="View Roadside Rush live demo">
+              Live Demo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 8h8M8 4l4 4-4 4"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- ==========================================
+             PROJECT 08 — Me and Mom Diner
+             Live URL: https://ghost-plug.github.io/meandmomdiner
+             ========================================== -->
+        <article class="project-card fade-in fade-in-delay-1" aria-label="Project: Me and Mom Diner">
+          <div class="card-header">
+            <p class="card-number">Project — 08</p>
+            <h3 class="card-title">Me and Mom Diner</h3>
+          </div>
+          <div class="card-body">
+            <div class="card-problem">
+              <p class="card-section-label">Problem Solved</p>
+              <p>Family run diners carry deep emotional value but often fail to communicate that
+                warmth digitally. This site wraps authentic storytelling around practical content
+                menu, hours, location, so new customers feel welcomed before they arrive.</p>
+            </div>
+            <div class="card-tech">
+              <p class="card-section-label">Tech Stack</p>
+              <div class="card-tech-tags">
+                <span class="card-tech-tag">HTML5</span>
+                <span class="card-tech-tag">CSS3</span>
+                <span class="card-tech-tag">JavaScript</span>
+                <span class="card-tech-tag">Storytelling UX</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://ghost-plug.github.io/meandmomdiner" target="_blank" rel="noopener noreferrer"
+              class="btn-demo" aria-label="View Me and Mom Diner live demo">
+              Live Demo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 8h8M8 4l4 4-4 4"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+      <!-- END .projects-grid -->
+
+    </div>
+  </section>
+
+  <hr class="hr-accent" />
+
+  <!-- ============================================================
+       CONTACT SECTION
+       ============================================================ -->
+  <section id="contact" class="section" aria-label="Contact Daniel Essien">
+    <div class="container">
+
+      <div class="contact-grid">
+
+        <!-- Left: Intro + Social links -->
+        <div>
+          <p class="section-label fade-in">Get in Touch</p>
+          <h2 class="section-title fade-in fade-in-delay-1">
+            Let's build something<br>
+            <em style="font-style:italic; color:var(--accent);">worth remembering.</em>
+          </h2>
+          <div class="divider fade-in fade-in-delay-1"></div>
+
+          <div class="contact-intro">
+            <p class="fade-in fade-in-delay-2">
+              Whether you need a full frontend build, a data-informed redesign,
+              or just want to explore what's possible — I'm open to conversations
+              that start with a real problem.
+            </p>
+            <p class="fade-in fade-in-delay-2">
+              Reach out via the form or connect directly below.
+              I typically respond within 24 hours.
+            </p>
+          </div>
+
+          <!-- ==========================================
+               SOCIAL LINKS — UPDATE ALL LINKS BELOW
+               Three links: X, Email, WhatsApp.
+               Each block is clearly labelled.
+               ========================================== -->
+          <div class="social-links" role="list">
+
+            <!-- ==========================================
+                 LINK 1 — X (TWITTER)
+                 UPDATE: Replace href URL with your X profile.
+                 UPDATE: Replace @yourusername with your handle.
+                 ========================================== -->
+            <a
+              href="https://x.com/ghost_plug33"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link fade-in fade-in-delay-2"
+              role="listitem"
+              aria-label="Follow Daniel on X"
+            >
+              <div class="social-link-icon" aria-hidden="true">𝕏</div>
+              <div>
+                <p class="social-link-name">X (Twitter)</p>
+                <!-- UPDATE: your X handle -->
+                <p class="social-link-handle">@ghost_plug33</p>
+              </div>
+              <span class="social-link-arrow" aria-hidden="true">→</span>
+            </a>
+            <!-- END X LINK -->
+
+            <!-- ==========================================
+                 LINK 2 — EMAIL
+                 UPDATE: Replace "your@email.com" in both
+                 the href and the display text below.
+                 ========================================== -->
+            <a
+              href="mailto:danieldanielessien@gmail.com"
+              class="social-link fade-in fade-in-delay-3"
+              role="listitem"
+              aria-label="Email Daniel Essien"
+            >
+              <div class="social-link-icon" aria-hidden="true">✉</div>
+              <div>
+                <p class="social-link-name">Email</p>
+                <!-- UPDATE: your email address -->
+                <p class="social-link-handle">danieldanielessien@gmail.com</p>
+              </div>
+              <span class="social-link-arrow" aria-hidden="true">→</span>
+            </a>
+            <!-- END EMAIL LINK -->
+
+            <!-- ==========================================
+                 LINK 3 — WHATSAPP
+                 UPDATE: Replace the number in href with your
+                 real WhatsApp number (international format,
+                 no + or spaces). E.g. "2348012345678".
+                 UPDATE: Display number in social-link-handle.
+                 ========================================== -->
+            <a
+              href="https://wa.me/2347034883750"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link fade-in fade-in-delay-4"
+              role="listitem"
+              aria-label="Message Daniel on WhatsApp"
+            >
+              <div class="social-link-icon" aria-hidden="true">💬</div>
+              <div>
+                <p class="social-link-name">WhatsApp</p>
+                <!-- UPDATE: display your real number -->
+                <p class="social-link-handle">+234 (703) 488-3750</p>
+              </div>
+              <span class="social-link-arrow" aria-hidden="true">→</span>
+            </a>
+            <!-- END WHATSAPP LINK -->
+
+          </div>
+          <!-- END social links -->
+        </div>
+
+        <!-- Right: Contact form -->
+        <div class="fade-in fade-in-delay-1">
+          <h3 class="contact-form-title">Send a message</h3>
+
+          <!-- ==========================================
+               FORMSUBMIT INTEGRATION
+               Replace "your@email.com" in the action
+               attribute below with your actual email
+               address to receive form submissions.
+
+               First submission triggers a one-time
+               confirmation email from FormSubmit —
+               click "Confirm" to activate the endpoint.
+               ========================================== -->
+          <form
+            id="contact-form"
+            action="https://formsubmit.co/danieldanielessien@gmail.com"
+            method="POST"
+            novalidate
+          >
+            <!-- Disables FormSubmit's default CAPTCHA page -->
+            <input type="hidden" name="_captcha" value="false" />
+
+            <!-- Subject line that appears in your inbox -->
+            <input type="hidden" name="_subject" value="New Portfolio Message — Daniel Essien" />
+
+            <!-- ==========================================
+                 REDIRECT AFTER SUBMISSION
+                 UPDATE: Replace with your own thank-you
+                 page URL, or delete this line to use
+                 FormSubmit's built-in thank-you page.
+                 ========================================== -->
+            <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html" />
+            <div class="form-group">
+              <label class="form-label" for="form-name">Your Name</label>
+              <input class="form-input" type="text" id="form-name" name="name"
+                placeholder="Jane Smith" autocomplete="name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="form-email">Email Address</label>
+              <input class="form-input" type="email" id="form-email" name="email"
+                placeholder="jane@company.com" autocomplete="email" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="form-message">Message</label>
+              <textarea class="form-textarea" id="form-message" name="message"
+                placeholder="Tell me about your project, timeline, and what success looks like for you…"
+                required></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">
+          © <span id="footer-year"></span> <span>Daniel Essien</span>. Crafted with precision.
+        </p>
+        <a href="#hero" class="footer-back-top" aria-label="Back to top">
+          Back to top ↑
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    // ============================================================
+    // 1. THEME TOGGLE
+    //    Persists preference to localStorage. Respects OS setting.
+    // ============================================================
+    (function () {
+      const html = document.documentElement;
+      const btn  = document.getElementById('theme-toggle');
+      const icon = document.getElementById('theme-icon');
+
+      const saved      = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initial    = saved || (prefersDark ? 'dark' : 'light');
+
+      html.setAttribute('data-theme', initial);
+      icon.textContent = initial === 'dark' ? '☀' : '☽';
+
+      btn.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next    = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        icon.textContent = next === 'dark' ? '☀' : '☽';
+        localStorage.setItem('theme', next);
+      });
+    })();
+
+    // ============================================================
+    // 2. MOBILE NAV DRAWER
+    // ============================================================
+    (function () {
+      const hamburger  = document.getElementById('nav-hamburger');
+      const drawer     = document.getElementById('nav-drawer');
+      const links      = drawer.querySelectorAll('a');
+
+      hamburger.addEventListener('click', () => {
+        const isOpen = drawer.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          drawer.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+    // ============================================================
+    // 3. SCROLL ANIMATIONS — Intersection Observer
+    //    Adds .visible class as .fade-in elements enter viewport.
+    // ============================================================
+    (function () {
+      const els = document.querySelectorAll('.fade-in');
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target); // stop after first trigger
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      els.forEach(el => observer.observe(el));
+    })();
+
+    // ============================================================
+    // 4. FOOTER YEAR — auto-updates copyright year
+    // ============================================================
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // ============================================================
+    // 5. CONTACT FORM — handled natively by FormSubmit.co
+    //    Submission is a standard HTML POST to the action URL.
+    //    No JavaScript interception needed. FormSubmit receives
+    //    the data and forwards it to your email automatically.
+    // ============================================================
+  </script>
+
+</body>
+</html>
