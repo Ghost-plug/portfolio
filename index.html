@@ -1632,7 +1632,7 @@
             id="contact-form"
             action="https://formsubmit.co/295911e2198dfdd888ccaa96d8fb9fb6"
             method="POST"
-            novalidate
+            formvalidate
           >
             <!-- Disables FormSubmit's default CAPTCHA page -->
             <input type="hidden" name="_captcha" value="false" />
@@ -1646,8 +1646,8 @@
                  page URL, or delete this line to use
                  FormSubmit's built-in thank-you page.
                  ========================================== -->
-            <input type="hidden" name="_next" value="thank-you.html" />
-            <div class="form-group">
+            <input type="hidden" name="_next" value="thank-you.html" method = "POST" />
+            <div class="form-group" >
               <label class="form-label" for="form-name">Your Name</label>
               <input class="form-input" type="text" id="form-name" name="name"
                 placeholder="Jane Smith" autocomplete="name" required />
